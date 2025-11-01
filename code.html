@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Visible Watermark Tool</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f6fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+canvas {
+  max-width: 600px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+input[type="file"], input[type="text"], input[type="range"], button, select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background: #1d4ed8;
+}
+label {
+  font-size: 14px;
+  color: #333;
+}
+#dropZone {
+  width: 600px;
+  height: 100px;
+  border: 2px dashed #999;
+  border-radius: 8px;
+  text-align: center;
+  line-height: 100px;
+  color: #666;
+  margin-bottom: 15px;
+}
+</style>
+</head>
+<body>
+
+<h2>Advanced Visible Watermark Tool</h2>
+
+<div id="dropZone">Drag & Drop Image Here or Click Below</div>
+
+<div class="container">
+  <div class="card controls">
+    <label>Select Image:</label>
+    <input type="file" id="upload" accept="image/*">
+
+    <label>Watermark Mode:</label>
+    <select id="mode">
+      <option value="text">Text Watermark</option>
+      <option value="logo">Logo Watermark</option>
+    </select>
+
+    <div id="textControls">
+      <label>Watermark Text:</label>
+      <input type="text" id="watermarkText" placeholder="Enter watermark text">
+
+      <label>Font Size: <span id="fontSizeValue">30</span>px</label>
+      <input type="range" id="fontSize" min="10" max="100" value="30">
+    </div>
+
+    <div id="logoControls" style="display:none">
+      <label>Select Logo:</label>
+      <input type="file" id="logoUpload" accept="image/*">
+    </div>
+
+    <label>Opacity: <span id="opacityValue">0.5</span></label>
+    <input type="range" id="opacity" min="0" max="1" step="0.05" value="0.5">
+
+    <label>Rotation: <span id="rotationValue">0</span>°</label>
+    <input type="range" id="rotation" min="-90" max="90" value="0">
+
+    <button id="downloadBtn">Download Image</button>
+  </div>
+
+  <div class="card">
+    <canvas id="canvas"></canvas>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
